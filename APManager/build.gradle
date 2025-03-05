@@ -1,12 +1,12 @@
 plugins {
     id 'com.android.library'
 }
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-ext{
+
+ext {
     VERSION_CODE = 2
     VERSION_NAME = "1.0.1"
 }
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -31,10 +31,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     testImplementation 'junit:junit:4.13.1'
@@ -73,47 +73,6 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-// This is mandatory
-group = publishedGroupId
-
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-
-                groupId publishedGroupId
-                artifactId = artifact
-                name libraryName
-                description = libraryDescription
-                url siteUrl
-
-                licenses {
-                    license {
-                        name licenseName
-                        url licenseUrl
-                    }
-                }
-                developers {
-                    developer {
-                        id developerId
-                        name developerName
-                        email developerEmail
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
-        }
-    }
-}
-
-
-
 // Avoid Kotlin docs error
 tasks.withType(Javadoc) {
     enabled = false
@@ -137,19 +96,4 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
-}
-
-bintray {
-    user = System.getenv("bintrayUser")
-    key = System.getenv("bintrayApiKey")
-
-    configurations = ['archives']
-    pkg {
-        repo = bintrayRepo
-        name = bintrayName
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = allLicenses
-        publish = true
-    }
 }
