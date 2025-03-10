@@ -10,7 +10,7 @@ APManager is a library that help to create mobile hotspot on android device prog
 allprojects {
     repositories {
         ...
-        jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 ```
@@ -18,7 +18,7 @@ allprojects {
 #### Step 2 : Add the dependency
 ```gradle
 dependencies {
-    implementation 'com.vkpapps.wifimanager:APManager:1.0.0'
+    implementation 'com.github.am3n:AndroidWifiManager:213a5452c3'
 }
 ```
 #### Step 3 : Use in your app
